@@ -15636,7 +15636,7 @@ function FamilyHistory() {
     return (
         <div>
             <Typography variant="h4" gutterBottom>
-                Family History
+                <u>Family History</u>
             </Typography>
             <Autocomplete
                 {...conditionCodeProps}

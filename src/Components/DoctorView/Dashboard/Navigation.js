@@ -8,7 +8,7 @@ import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
 import PeopleIcon from '@material-ui/icons/People';
 import {Link} from 'react-router-dom';
 
-const Navigation=()=>{
+const Navigation = () =>{
     return (
             
         <div>
