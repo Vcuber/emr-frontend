@@ -24,7 +24,7 @@ function HomePage() {
         <div>
             <div className="particles">
                 <ParticlesBg color="#5cfafa" type="cobweb" bg={true} />
-                <button class="btn" onClick={handleOpen}>SIGN IN</button>
+                <button class="btn" onClick={handleOpen}><b>SIGN IN</b></button>
                 <ModalDialog open={open} handleClose={handleClose} />
             </div>
             <Bounce>

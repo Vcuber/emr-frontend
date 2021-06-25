@@ -101,17 +101,14 @@ function Procedure() {
         {
           code: 385669000,
           display: "Successful",
-          "": ""
         },
         {
           code: 385671000,
           display: "Unsuccessful",
-          "": ""
         },
         {
           code: 385670004,
           display: "Partially successful",
-          "": ""
         }
       ];
 
@@ -180,96 +177,38 @@ function Procedure() {
         getOptionLabel: (option) => option.display,
     };
 
+    const comps = [
+      {id:"bodySite", label: "Body Site", props: bodySiteProps},
+      {id:"category", label: "Category", props: categoryProps},
+      {id:"codeData", label: "Code", props: codeProps},
+      {id:"complication", label: "Complication", props: complicationProps},
+      {id:"focalDeviceAction", label: "Focal Device Action", props: focalDeviceActionProps},
+      {id:"followUp", label: "Follow Up", props: followUpProps},
+      {id:"outcome", label: "Outcome", props: outcomeProps},
+      {id:"performerFunction", label: "Performer Function", props: performerFunctionProps},
+      {id:"reasonCode", label: "Reason Code", props: reasonCodeProps},
+      {id:"status", label: "Status", props: statusProps},
+      {id:"statusReason", label: "Status Reason", props: statusReasonProps},
+      {id:"usedCode", label: "Used Code", props: usedCodeProps},
+    ];
+
     return (
         <div>
             <Typography variant="h4" gutterBottom>
               <u>Procedure</u>
               <Divider />
             </Typography>
-            <Autocomplete
-                {...bodySiteProps}
-                id="bodySite"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Body Site" margin="normal" />}
-            />
-            <Autocomplete
-                {...categoryProps}
-                id="category"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Category" margin="normal" />}
-            />
-            <Autocomplete
-                {...codeProps}
-                id="code"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="code" margin="normal" />}
-            />
-            <Autocomplete
-                {...complicationProps}
-                id="complication"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Complication" margin="normal" />}
-            />
-            <Autocomplete
-                {...focalDeviceActionProps}
-                id="focalDeviceAction"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Focal Device Action" margin="normal" />}
-            />
-            <Autocomplete
-                {...followUpProps}
-                id="followUp"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Follow Up" margin="normal" />}
-            />
-            <Autocomplete
-                {...outcomeProps}
-                id="outcome"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Outcome" margin="normal" />}
-            />
-            <Autocomplete
-                {...performerFunctionProps}
-                id="performerFunction"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Performer Function" margin="normal" />}
-            />
-            <Autocomplete
-                {...reasonCodeProps}
-                id="reasonCode"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Reason Code" margin="normal" />}
-            />
-            <Autocomplete
-                {...statusProps}
-                id="status"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Status" margin="normal" />}
-            />
-            <Autocomplete
-                {...statusReasonProps}
-                id="statusReason"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Status Reason" margin="normal" />}
-            />
-            <Autocomplete
-                {...usedCodeProps}
-                id="usedCode"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Used Code" margin="normal" />}
-            />
+            {
+              comps.map(val => (
+                  <Autocomplete
+                      {...val.props}
+                      id={val.id}
+                      autoComplete
+                      includeInputInList
+                      renderInput={(params) => <TextField {...params} label={val.label} margin="normal" />}
+                  />
+              ))
+            }   
         </div>
     )
 }

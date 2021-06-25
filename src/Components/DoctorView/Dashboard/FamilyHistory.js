@@ -79,60 +79,34 @@ function FamilyHistory() {
         getOptionLabel: (option) => option.display,
     };
 
+    const comps = [
+
+        {id:"conditionCode", label: "Condition Code", props: conditionCodeProps},
+        {id:"conditionOutcome", label: "Condition Outcome", props: conditionOutcomeProps},
+        {id:"dataAbsentReason", label: "Data Absent Reason", props: dataAbsentReasonProps},
+        {id:"reasonCode", label: "Reason Code", props: reasonCodeProps},
+        {id:"relationship", label: "Relationship", props: relationshipProps},
+        {id:"sex", label: "Sex", props: sexProps},
+        {id:"status", label: "Status", props: statusProps},
+
+    ];
+
     return (
         <div>
             <Typography variant="h4" gutterBottom>
                 <u>Family History</u>
             </Typography>
-            <Autocomplete
-                {...conditionCodeProps}
-                id="conditionCode"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Condition Code" margin="normal" />}
-            />
-            <Autocomplete
-                {...conditionOutcomeProps}
-                id="conditionOutcome"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Condition Outcome" margin="normal" />}
-            />
-            <Autocomplete
-                {...dataAbsentReasonProps}
-                id="dataAbsentReason"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Data Absent Reason" margin="normal" />}
-            />
-            <Autocomplete
-                {...reasonCodeProps}
-                id="reasonCode"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Reason Code" margin="normal" />}
-            />
-            <Autocomplete
-                {...relationshipProps}
-                id="relationship"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Relationship" margin="normal" />}
-            />
-            <Autocomplete
-                {...sexProps}
-                id="sex"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Sex" margin="normal" />}
-            />
-            <Autocomplete
-                {...statusProps}
-                id="status"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Status" margin="normal" />}
-            />
+            {
+                comps.map(val => (
+                    <Autocomplete
+                        {...val.props}
+                        id={val.id}
+                        autoComplete
+                        includeInputInList
+                        renderInput={(params) => <TextField {...params} label={val.label} margin="normal" />}
+                    />
+                ))
+            }   
             <br />
             <br />
         </div>

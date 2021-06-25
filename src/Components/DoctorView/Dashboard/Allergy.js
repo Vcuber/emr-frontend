@@ -103,82 +103,34 @@ function Allergy() {
         getOptionLabel: (option) => option.display,
     };
     
+    const comps = [ {id:"category", label: "Category", props: categoryProps},
+                    {id:"clinicalStatus", label: "Clinical Status", props: clinicalStatusProps},
+                    {id:"code", label: "Code", props: codeProps},
+                    {id:"criticality", label: "Criticality", props: criticalityProps},
+                    {id:"purpose", label: "Purpose", props: purposeProps},
+                    {id:"reactionExposureRoute", label: "Reaction Exposure", props: reactionExposureRouteProps},
+                    {id:"reactionManifestation", label: "Reaction Manifestation", props: reactionManifestationProps},
+                    {id:"reactionSubstance", label: "Reaction Substance", props: reactionSubstanceProps},
+                    {id:"type", label: "Type", props: typeProps},
+                    {id:"verificationStatus", label: "Verification Status", props: verificationStatusProps}, 
+                ];
     return (
         <div>
             <Typography variant="h4" gutterBottom>
               <u>Allergy</u>
               <Divider />
             </Typography>
-            <Autocomplete
-                {...categoryProps}
-                id="category"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Category" margin="normal" />}
-            />
-            <Autocomplete
-                {...clinicalStatusProps}
-                id="clinicalStatus"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Clinical Status" margin="normal" />}
-            />
-            <Autocomplete
-                {...codeProps}
-                id="code"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="code" margin="normal" />}
-            />
-            <Autocomplete
-                {...criticalityProps}
-                id="criticality"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Criticality" margin="normal" />}
-            />
-            <Autocomplete
-                {...purposeProps}
-                id="purpose"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Purpose" margin="normal" />}
-            />
-            <Autocomplete
-                {...reactionExposureRouteProps}
-                id="reactionExposureRoute"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Reaction Exposure Route" margin="normal" />}
-            />
-            <Autocomplete
-                {...reactionManifestationProps}
-                id="reactionManifestation"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Reaction Manifestation" margin="normal" />}
-            />
-            <Autocomplete
-                {...reactionSubstanceProps}
-                id="reactionSubstance"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Reaction Substance" margin="normal" />}
-            />
-            <Autocomplete
-                {...typeProps}
-                id="type"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Type" margin="normal" />}
-            />
-            <Autocomplete
-                {...verificationStatusProps}
-                id="verificationStatus"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => <TextField {...params} label="Verification Status" margin="normal" />}
-            />
+            {
+                comps.map(val => (
+                    <Autocomplete
+                        {...val.props}
+                        id={val.id}
+                        autoComplete
+                        includeInputInList
+                        renderInput={(params) => <TextField {...params} label={val.label} margin="normal" />}
+                    />
+                ))
+            }
             <br />
             <br />
         </div>
