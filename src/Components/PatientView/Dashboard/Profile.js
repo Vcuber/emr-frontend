@@ -6,9 +6,7 @@ function Profile() {
     return (
         <div>
             <WelcomeMessage />
-            <center>
-                <UserProfile />
-            </center>
+            <UserProfile />
         </div>
     )
 }

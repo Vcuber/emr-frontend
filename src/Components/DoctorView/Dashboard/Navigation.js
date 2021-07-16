@@ -13,19 +13,15 @@ const Navigation = () =>{
             
         <div>
           <List>
-            <Link to="/DoctorDashboard/">
-            <ListItem button key="Dashboard">
+            <ListItem to="/DoctorDashboard/" component={Link} button key="Dashboard">
                   <ListItemIcon><DashboardIcon></DashboardIcon></ListItemIcon>
                   <ListItemText primary="Dashboard" />
+            </ListItem>        
+            <ListItem to="/DoctorDashboard/Search" component={Link} button key="Search">
+                  <ListItemIcon><LocalHospitalIcon></LocalHospitalIcon></ListItemIcon>
+                  <ListItemText primary="Search" />
             </ListItem>
-            </Link>            
-            <Link to="/DoctorDashboard/Search">
-                <ListItem button key="Search">
-                    <ListItemIcon><LocalHospitalIcon></LocalHospitalIcon></ListItemIcon>
-                    <ListItemText primary="Search" />
-                </ListItem>
-            </Link>
-            <Link to="/DoctorDashboard/Clinical">
+            {/* <Link to="/DoctorDashboard/Clinical">
             <ListItem button key="Clinical">
                   <ListItemIcon><PeopleIcon></PeopleIcon></ListItemIcon>
                   <ListItemText primary="Clinical" />
@@ -36,25 +32,17 @@ const Navigation = () =>{
                   <ListItemIcon><PeopleIcon></PeopleIcon></ListItemIcon>
                   <ListItemText primary="Diagnostics" />
             </ListItem>
-            </Link> 
-            <Link to="/DoctorDashboard/Financial">
-            <ListItem button key="Financial">
-                  <ListItemIcon><PeopleIcon></PeopleIcon></ListItemIcon>
-                  <ListItemText primary="Financial" />
-            </ListItem>
-            </Link> 
-            <Link to="/DoctorDashboard/Medication">
+            </Link>  */}
+            {/* <Link to="/DoctorDashboard/Medication">
             <ListItem button key="Medication">
                   <ListItemIcon><PeopleIcon></PeopleIcon></ListItemIcon>
                   <ListItemText primary="Medication" />
-            </ListItem>
-            </Link>
-            <Link to="/DoctorDashboard/Profile">
-            <ListItem button key="Profile">
+            </ListItem> 
+            </Link>*/}
+            <ListItem to="/DoctorDashboard/Profile" component={Link} button key="Profile">
                   <ListItemIcon><PeopleIcon></PeopleIcon></ListItemIcon>
                   <ListItemText primary="Profile" />
-            </ListItem>
-            </Link>       
+            </ListItem>     
           </List>
         </div>
     )
