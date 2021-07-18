@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { makeStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
+import { useAppContext } from '../../libs/contextLib';
+import { UserContext } from '../../libs/userContext';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -29,6 +31,8 @@ function Form({handleClose}) {
     const [userId, setUserId] = useState('');
     const [password, setPassword] = useState('');
     const history = useHistory();
+    const { userHasAuthenticated } = useAppContext();
+    const resabc = useContext(UserContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -40,24 +44,38 @@ function Form({handleClose}) {
         formdata.append("password", password);
 
         try {
-            const res = await fetch("/token", {
+            const res = await fetch("/auth/token", {
                 body: formdata, 
                 method:"post"
             });
             if(res.status === 200) {
                 const data = await res.json();
-                console.log(data);
-                switch(data.access_token) {
-                    case "janedoe":
-                            history.push("/DoctorDashboard");
-                            break;
-                    case "johndoe": 
-                            history.push("/PatientDashboard");
-                            break;
-                    default: 
-                            break;
-                    // case 3: 
-                    //         history.push("/AdminDashboard");
+                resabc.setLoginRes(data);
+                switch(data.entity_type) {
+                    case "":
+                        history.push("/");
+                        break;
+                    case "Doctor":
+                        userHasAuthenticated(true);
+                        localStorage.setItem("Authenticated", "Doctor"); 
+                        history.push("/DoctorDashboard");
+                        break;
+                    case "Careteam":
+                        userHasAuthenticated(true);
+                        localStorage.setItem("Authenticated", "Careteam");
+                        break;
+                    case "Admin":
+                        userHasAuthenticated(true);
+                        localStorage.setItem("Authenticated", "Admin");
+                        break;
+                    case "Patient":
+                        userHasAuthenticated(true);
+                        localStorage.setItem("Authenticated", "Patient");
+                        history.push("/PatientDashboard");
+                        break;
+                    default:
+                        history.push("/"); 
+                        break;
                 }
             }
         } catch(e1) {

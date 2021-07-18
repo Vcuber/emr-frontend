@@ -6,11 +6,24 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
 import PeopleIcon from '@material-ui/icons/People';
+import Divider from '@material-ui/core/Divider';
 import {Link} from 'react-router-dom';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { useAppContext } from "../../../libs/contextLib";
+import { useHistory } from "react-router";
 
 const Navigation = () =>{
-    return (
-            
+
+      const history = useHistory();
+
+      const {userHasAuthenticated} = useAppContext();
+      function handleLogout() {
+            userHasAuthenticated(false);
+            localStorage.removeItem("Authenticated");
+            history.push("/");
+      }
+
+    return (      
         <div>
           <List>
             <ListItem to="/DoctorDashboard/" component={Link} button key="Dashboard">
@@ -21,27 +34,14 @@ const Navigation = () =>{
                   <ListItemIcon><LocalHospitalIcon></LocalHospitalIcon></ListItemIcon>
                   <ListItemText primary="Search" />
             </ListItem>
-            {/* <Link to="/DoctorDashboard/Clinical">
-            <ListItem button key="Clinical">
-                  <ListItemIcon><PeopleIcon></PeopleIcon></ListItemIcon>
-                  <ListItemText primary="Clinical" />
-            </ListItem>
-            </Link>
-            <Link to="/DoctorDashboard/Diagnostics">
-            <ListItem button key="Diagnostics">
-                  <ListItemIcon><PeopleIcon></PeopleIcon></ListItemIcon>
-                  <ListItemText primary="Diagnostics" />
-            </ListItem>
-            </Link>  */}
-            {/* <Link to="/DoctorDashboard/Medication">
-            <ListItem button key="Medication">
-                  <ListItemIcon><PeopleIcon></PeopleIcon></ListItemIcon>
-                  <ListItemText primary="Medication" />
-            </ListItem> 
-            </Link>*/}
             <ListItem to="/DoctorDashboard/Profile" component={Link} button key="Profile">
                   <ListItemIcon><PeopleIcon></PeopleIcon></ListItemIcon>
                   <ListItemText primary="Profile" />
+            </ListItem>
+            <Divider />
+            <ListItem button key="Logout" onClick={handleLogout}>
+                  <ListItemIcon><ExitToAppIcon></ExitToAppIcon></ListItemIcon>
+                  <ListItemText primary="Logout" />
             </ListItem>     
           </List>
         </div>

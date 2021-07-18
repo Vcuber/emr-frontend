@@ -10,6 +10,7 @@ import {BrowserRouter  as Router,Switch,Route} from 'react-router-dom'
 import Navigation from './Navigation'
 import Profile from './Profile';
 import Appointment from './Appointment'
+import BMI from './BMI'
 
 
 const drawerWidth = 240;
@@ -68,6 +69,7 @@ export default function ClippedDrawer() {
             <Switch>
               <Route path="/PatientDashboard/" exact component={Profile}></Route>
               <Route path="/PatientDashboard/Appointment" component={Appointment}></Route>
+              <Route path="/PatientDashboard/Charts" component={BMI}></Route>
             </Switch>
       </main>
     </div>

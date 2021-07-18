@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import {UserContext} from '../../../libs/userContext';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -18,27 +19,7 @@ function UserProfile() {
     const [data, setData] = useState('');
     const [data2, setData2] = useState('');
 
-    const getProfile = async() => {
-        try {
-            const response1 = await fetch(`/patient/123456`, {
-                method: "get"
-              });
-              if(response1.status === 200) {
-                const dataResponse = await response1;
-                const data = await response1.json();
-                console.log(data);
-                //console.log(dataResponse);
-                setData(data);
-                getUser(data);
-              }
-              else {
-                window.alert("Patient does not exist!");
-              }
-        }
-        catch(e1) {
-            console.log(e1);
-        }
-    };
+    const res = useContext(UserContext);
 
     const getUser = async(data) => {
 
@@ -47,10 +28,8 @@ function UserProfile() {
             method: "get"
           });
           if(response2.status === 200) {
-            //const dataResponse2 = await response2;
             const data2 = await response2.json();
             console.log(data2);
-            //console.log(dataResponse2);
             setData2(data2);
           }
         }
@@ -60,8 +39,27 @@ function UserProfile() {
       }
 
       useEffect(
-          () => getProfile()
-          ,[]);
+          () => {
+            const getProfile = async() => {
+              try {
+                  const response1 = await fetch(`/patient/${res.loginRes.entity_id}`, {
+                      method: "get"
+                    });
+                    if(response1.status === 200) {
+                      const data = await response1.json();
+                      setData(data);
+                      getUser(data);
+                    }
+                    else {
+                      window.alert("Patient does not exist!");
+                    }
+              }
+              catch(e1) {
+                  console.log(e1);
+              }
+          };
+          getProfile();
+          }, []);
     
 
     return (
@@ -71,7 +69,7 @@ function UserProfile() {
         <br />
         <Grid container spacing={3}>
           <Grid item xs={6}>
-            <Paper className={classes.paper} >Patient ID: {123456}</Paper>
+            <Paper className={classes.paper} >Patient ID: {res.loginRes.entity_id}</Paper>
           </Grid>
           <Grid item xs={6}>
             <Paper className={classes.paper} >Full Name: {data2.fullname}</Paper>
