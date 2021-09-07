@@ -50,8 +50,8 @@ function BMI() {
           <u><h3>BMI Index</h3></u>
       <br />
       <LineChart
-        width={500}
-        height={300}
+        width={800}
+        height={500}
         data={dataBMI}
         margin={{
           top: 5,
@@ -80,8 +80,8 @@ function BMI() {
       <u><h3>Cholesterol</h3></u>
       <br />
       <LineChart
-        width={500}
-        height={300}
+        width={800}
+        height={500}
         data={dataBMI}
         margin={{
           top: 5,
@@ -109,8 +109,8 @@ function BMI() {
       <u><h3>Blood Pressure</h3></u>
       <br />
       <LineChart
-        width={500}
-        height={300}
+        width={800}
+        height={500}
         data={dataBMI}
         margin={{
           top: 5,

@@ -55,7 +55,7 @@ function Form({handleClose}) {
                     case "":
                         history.push("/");
                         break;
-                    case "Doctor":
+                    case "Practitioner":
                         userHasAuthenticated(true);
                         localStorage.setItem("Authenticated", "Doctor"); 
                         history.push("/DoctorDashboard");
